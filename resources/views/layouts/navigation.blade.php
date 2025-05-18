@@ -19,6 +19,7 @@
             </div>
 
             <!-- Settings Dropdown -->
+            @if (Auth::check())
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -51,6 +52,12 @@
                     </x-slot>
                 </x-dropdown>
             </div>
+            @else
+            <div class="hidden sm:flex sm:items-center sm:ms-6 text-gray-500 dark:text-gray-400">
+                <a href="{{ route('login') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:text-gray-700 dark:hover:text-gray-300">Login</a>
+                <a href="{{ route('register') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:text-gray-700 dark:hover:text-gray-300">Register</a>
+            </div>
+            @endif
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -73,6 +80,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
+        @if (Auth::check())
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
@@ -96,5 +104,11 @@
                 </form>
             </div>
         </div>
+        @else
+        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 px-4">
+            <a href="{{ route('login') }}" class="block px-3 py-2 rounded-md text-base font-medium hover:text-gray-700 dark:hover:text-gray-300">Login</a>
+            <a href="{{ route('register') }}" class="block px-3 py-2 rounded-md text-base font-medium hover:text-gray-700 dark:hover:text-gray-300">Register</a>
+        </div>
+        @endif
     </div>
 </nav>
