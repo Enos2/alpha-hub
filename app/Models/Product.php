@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class News extends Model
+class Product extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        // Add your fillable fields here if needed
-        // e.g., 'title', 'content', 'author_id'
+        // Add fields later like 'name', 'description', 'price'
     ];
 
     public function comments()

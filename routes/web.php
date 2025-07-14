@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 // Home will display latest news
@@ -9,6 +10,11 @@ Route::get('/', [NewsController::class, 'index'])->name('home');
 
 // Public can view news detail pages
 Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
+
+// Comment submission route (for News or Product)
+Route::post('/comments', [CommentController::class, 'store'])
+    ->middleware('auth')
+    ->name('comments.store');
 
 // Only authenticated users can manage news and profile
 Route::middleware(['auth'])->group(function () {

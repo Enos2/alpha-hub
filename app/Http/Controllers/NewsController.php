@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -41,7 +42,7 @@ class NewsController extends Controller
             'content' => $request->content,
             'image' => $imagePath,
             'video_url' => $request->video_url,
-            'user_id' => auth()->id(), // track which user added the news
+            'user_id' => Auth::id(), // Auth fixed for Intelephense
         ]);
 
         return redirect()->route('home')->with('success', 'News article created successfully.');
